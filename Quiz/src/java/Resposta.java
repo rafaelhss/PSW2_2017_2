@@ -43,14 +43,34 @@ public class Resposta extends HttpServlet {
         if(questaoAtual == null){
             questaoAtual = 0;
         }
-       
-        if(gabarito[questaoAtual].equals(resp)){
-            // acertou
+        Integer pontos = null;
+        
+        if(gabarito[questaoAtual].equals(resp)){            
+            pontos = (Integer) request.getSession()
+                                .getAttribute("pontos");
+            if (pontos == null){
+                pontos = 0;
+            }
+            
+            pontos += 10;
+            
+            request.getSession()
+                    .setAttribute("pontos", pontos);            
         }
         
         request.getSession().setAttribute("questao", ++questaoAtual);
-        request.getRequestDispatcher("Quiz")
+        
+        if (questaoAtual >= gabarito.length){
+            //chegou na ultima
+            request.setAttribute("pontos", pontos);
+            request.getRequestDispatcher("resultado.jsp")
                 .forward(request, response);
+            
+        } else {
+        
+            request.getRequestDispatcher("Quiz")
+                .forward(request, response);
+        }
         
         
     }
