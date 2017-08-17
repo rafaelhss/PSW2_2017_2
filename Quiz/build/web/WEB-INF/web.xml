@@ -8,6 +8,10 @@
         <servlet-name>Resposta</servlet-name>
         <servlet-class>Resposta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Limpar</servlet-name>
+        <servlet-class>Limpar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Quiz</servlet-name>
         <url-pattern>/Quiz</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Resposta</servlet-name>
         <url-pattern>/Resposta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Limpar</servlet-name>
+        <url-pattern>/Limpar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

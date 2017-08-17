@@ -18,5 +18,6 @@
             Resposta: <input type="text" name="resposta">
             <input type="submit">
         </form>
+        <a href="Limpar">Limpar sessao</a>
     </body>
 </html>
