@@ -1,0 +1,52 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="testeApp" ng-controller="testeCtrl">
+   o valor de varteste eh: {{varteste}}
+   <br/>
+   <input ng-model="varteste">
+   <br/>
+   <button ng-click="add(varteste)">Adicionar</button>
+   <button ng-click="apagar()">Clique para apagar</button>
+
+   <br/>
+   
+   <img ng-if="varteste == 'circulo'"
+   height="100" src="https://image.freepik.com/icones-gratis/circulo-esboco_318-48580.jpg">
+   <img ng-hide="varteste == 'triangulo'"
+   height="100" src="https://image.freepik.com/icones-gratis/triangulo-forma-geometrica_318-30984.jpg">
+   <img ng-hide="varteste == 'quadrado'"
+   height="100" src="https://image.freepik.com/icones-gratis/quadrado-contorno-da-forma_318-50117.jpg">
+   
+   
+      
+   <div ng-repeat="veg in vegetais track by $index">
+       <b>vegetal: {{veg}}</b>
+   </div>
+   
+   
+</body>
+<script>
+
+    
+    var app = angular.module("testeApp",[]);
+    app.controller("testeCtrl", function($scope){
+    
+        $scope.varteste = "teste 1234";
+        
+        $scope.apagar = function(){
+            var varteste = "bla bla bla";
+            $scope.varteste = undefined; 
+        }
+        
+        $scope.vegetais = ['batata', 'cenoura', 'pepino'];
+        
+        $scope.add = function(vege){
+            $scope.vegetais.push(vege);
+        }
+        
+    
+    });
+</script>
+</html>
