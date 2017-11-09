@@ -1,0 +1,80 @@
+<html>
+   <head>
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+   <style>
+    table, th, td {
+        border: 1px solid black;
+    }
+   </style>
+   
+   </head>
+    <body ng-app="passeioApp" ng-controller="passeioCtrl">
+        <h1>Portal dos passeios</h1>
+        <h2>Passeios disponiveis:</h2>
+        <table>
+            <thead>
+                <td>Nome</td>
+                <td>Local</td>
+                <td>Data</td>
+            </thead>
+            <tbody>
+                <tr ng-repeat="passeio in passeios">
+                    <td>{{passeio.nome}}</td>
+                    <td>{{passeio.local}}</td>
+                    <td>{{passeio.data}}</td>
+                </tr>
+            </tbody>
+        </table>    
+        
+    </body>
+    <script>
+        var app = angular.module("passeioApp",[]);
+        app.controller("passeioCtrl",function($scope, $http){
+            
+            $scope.passeios = [];
+            
+            var passeio1 = {
+                            nome:"passeio teste 1",
+                            local: "local do p1",
+                            data: "dominguera"
+                            };
+            
+            $scope.passeios.push(passeio1);
+            
+            var passeio2 = {
+                            nome:"passeio teste 2",
+                            local: "local do p2",
+                            data: "sabado"
+                            };
+            
+            $scope.passeios.push(passeio2);
+            
+            
+            
+            $scope.passeios.push({
+                            nome:"passeio teste 3",
+                            local: "local do p3",
+                            data: "quarta"
+                            });
+            
+           $http.get("http://localhost:8080/passeio")
+               .success(function(dados){ 
+                            console.log("deu certo"); 
+                            console.log(dados); 
+                            $scope.passeios = dados;
+                        })
+               .error(function(erro){ 
+                            console.log("deu erro");
+                            console.log(erro);
+                        });
+            
+            console.log("acabou");
+            
+            
+            
+        });
+    
+    </script>
+    
+    
+</html>
